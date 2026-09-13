@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student Registration - StudentHub Portal">
+  <title>Register | StudentHub</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>StudentHub Portal</h1>
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="register.html" aria-current="page">Register</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="form-container">
+      <h2>Student Registration</h2>
+
+      <form action="login.html" method="POST">
+        <p>
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" required aria-required="true">
+        </p>
+
+        <p>
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" required aria-required="true">
+        </p>
+
+        <p>
+          <label for="department">Department:</label>
+          <select id="department" name="department" required aria-required="true">
+            <option value="B.Tech">B.Tech</option>
+            <option value="BCA">BCA</option>
+            <option value="B.Sc">B.Sc IT</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required aria-required="true">
+        </p>
+
+        <p>
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required aria-required="true">
+        </p>
+
+        <p class="form-actions">
+          <button type="submit">Register</button>
+          <button type="reset">Reset</button>
+        </p>
+      </form>
+
+      <p>Already have an account? <a href="login.html">Login here</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 StudentHub Academic Portal | College Project</p>
+  </footer>
+
+</body>
+</html>

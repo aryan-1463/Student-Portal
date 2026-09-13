@@ -1,0 +1,604 @@
+/* ==========================================================================
+   StudentHub Academic Portal - Redesigned Stylesheet (Ocean Teal & Royal Blue)
+   Vibrant, Fun & Student-Friendly CSS (No Pink)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Google Fonts Import & CSS Variables
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Vibrant Ocean Teal & Royal Blue Color Palette */
+  --primary-color: #2563eb;       /* Royal Blue */
+  --primary-hover: #1d4ed8;       /* Deep Blue Hover */
+  --secondary-color: #06b6d4;     /* Vibrant Cyan / Teal Accent */
+  --secondary-hover: #0891b2;
+  --accent-purple: #6366f1;       /* Indigo Accent */
+  --accent-cyan: #14b8a6;         /* Bright Teal */
+  --accent-emerald: #10b981;      /* Mint Emerald */
+  --accent-amber: #f59e0b;        /* Warm Amber */
+
+  /* Neutral & Background Tones */
+  --bg-color: #f8fafc;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 50%, #e0f2fe 100%);
+  --card-bg: #ffffff;
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+
+  /* Modern Radius & Shadows */
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 20px 30px -10px rgba(6, 182, 212, 0.22), 0 10px 15px -5px rgba(0, 0, 0, 0.05);
+
+  --max-width: 1140px;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Typography & Page Setup
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 1.85rem;
+  background: linear-gradient(135deg, #1d4ed8 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+h2 {
+  font-size: 1.45rem;
+  margin-top: 0.25rem;
+  color: #334155;
+  position: relative;
+}
+
+h3 {
+  font-size: 1.15rem;
+  color: #475569;
+}
+
+p {
+  margin-bottom: 0.85rem;
+  color: #475569;
+}
+
+a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover, a:focus {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+ul, ol {
+  margin-left: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+li {
+  margin-bottom: 0.45rem;
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header & Navigation (Ocean Cyan & Royal Blue Gradient)
+   -------------------------------------------------------------------------- */
+header {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #06b6d4 100%);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+header h1 {
+  color: #ffffff;
+  background: none;
+  -webkit-text-fill-color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  letter-spacing: -0.01em;
+}
+
+nav {
+  width: 100%;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem 0.5rem;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  display: inline-block;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+nav a:hover, nav a:focus {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+nav a[aria-current="page"] {
+  background: #ffffff;
+  color: #1e40af;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   4. Main Content Layout & Card Styling
+   -------------------------------------------------------------------------- */
+main {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 2rem auto 3rem;
+  padding: 0 1.25rem;
+  flex: 1;
+}
+
+section, article, aside {
+  margin-bottom: 1.75rem;
+}
+
+main > section:last-child,
+main > div:last-child {
+  margin-bottom: 0;
+}
+
+/* Card Container Style */
+section, article, aside, .card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.85rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
+}
+
+/* Interactive Card Elevate on Hover */
+section:hover, article:hover, .card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+/* Header inside sections */
+section > h2 {
+  display: inline-block;
+  margin-bottom: 1.1rem;
+}
+
+section > h2::after {
+  content: '';
+  display: block;
+  width: 40%;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  border-radius: var(--radius-pill);
+  margin-top: 0.3rem;
+}
+
+/* --------------------------------------------------------------------------
+   5. Form Controls & Centered Form Cards
+   -------------------------------------------------------------------------- */
+form {
+  margin-top: 0.5rem;
+}
+
+form p {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 0.4rem;
+  color: #334155;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.15);
+}
+
+textarea {
+  resize: none !important;
+  min-height: 110px;
+}
+
+button, input[type="submit"], input[type="reset"] {
+  background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover, button:focus,
+input[type="submit"]:hover, input[type="submit"]:focus {
+  background: linear-gradient(135deg, #1d4ed8 0%, #0891b2 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.45);
+}
+
+button:active, input[type="submit"]:active {
+  transform: translateY(0) scale(0.98);
+}
+
+button[type="reset"] {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  box-shadow: 0 4px 14px rgba(100, 116, 139, 0.3);
+}
+
+button[type="reset"]:hover {
+  background: linear-gradient(135deg, #475569 0%, #334155 100%);
+  box-shadow: 0 6px 18px rgba(71, 85, 105, 0.4);
+}
+
+.form-actions, form p:has(button) {
+  display: flex;
+  gap: 0.85rem;
+  margin-top: 1.1rem;
+}
+
+/* Centered Form Card Container */
+.form-container {
+  width: 100%;
+  max-width: 520px;
+  margin: 2rem auto;
+  padding: 2rem 2.2rem;
+  border-top: 5px solid var(--primary-color);
+}
+
+/* --------------------------------------------------------------------------
+   6. Contact Page Layout (.contact-layout)
+   -------------------------------------------------------------------------- */
+.contact-layout {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   7. Profile Page Card (.profile-card)
+   -------------------------------------------------------------------------- */
+.profile-card {
+  width: 100%;
+  max-width: 540px;
+  margin: 2rem auto;
+  padding: 2rem 2.2rem;
+  border-top: 5px solid var(--secondary-color);
+}
+
+.profile-card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-card li {
+  padding: 0.85rem 0.6rem;
+  border-bottom: 1px dashed var(--border-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease;
+}
+
+.profile-card li:hover {
+  background-color: #f0f9ff;
+}
+
+.profile-card li:last-child {
+  border-bottom: none;
+}
+
+.profile-card strong {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   8. Events Page Grid (.events-grid)
+   -------------------------------------------------------------------------- */
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.events-grid article {
+  margin-bottom: 0;
+  padding: 1.6rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 5px solid var(--primary-color);
+}
+
+.events-grid article:nth-child(2n) {
+  border-left-color: var(--secondary-color);
+}
+
+.events-grid article:nth-child(3n) {
+  border-left-color: var(--accent-amber);
+}
+
+.events-grid article h3 {
+  margin-bottom: 0.5rem;
+  color: #334155;
+}
+
+.events-grid article p {
+  margin-bottom: 0.4rem;
+}
+
+.events-grid article p:last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   9. General Grids (Home Features & FAQ)
+   -------------------------------------------------------------------------- */
+.features-grid,
+.grid-cards,
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.features-grid article,
+.grid-cards article,
+.faq-grid article {
+  margin-bottom: 0;
+  padding: 1.6rem 1.7rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.features-grid article::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+}
+
+.features-grid article:nth-child(2)::before {
+  background: linear-gradient(90deg, #06b6d4, #14b8a6);
+}
+
+.features-grid article:nth-child(3)::before {
+  background: linear-gradient(90deg, #10b981, #f59e0b);
+}
+
+.faq-grid article {
+  border-left: 4px solid var(--secondary-color);
+}
+
+/* --------------------------------------------------------------------------
+   10. Dashboard & Admin Layouts
+   -------------------------------------------------------------------------- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.stat-card {
+  margin-bottom: 0;
+  border-left: 5px solid var(--primary-color);
+  background: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat-card:nth-child(1) { border-left-color: var(--primary-color); }
+.stat-card:nth-child(2) { border-left-color: var(--secondary-color); }
+.stat-card:nth-child(3) { border-left-color: var(--accent-emerald); }
+.stat-card:nth-child(4) { border-left-color: var(--accent-amber); }
+
+.stat-card h3 {
+  font-size: 1rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+.stat-card p {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0;
+  margin-top: 0.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   11. Footer (Gradient & Rounded Top)
+   -------------------------------------------------------------------------- */
+footer {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  padding: 1.3rem 1rem;
+  text-align: center;
+  margin-top: auto;
+  font-size: 0.92rem;
+  border-top: 3px solid rgba(6, 182, 212, 0.4);
+}
+
+footer p {
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   12. Mobile-First Responsive Media Queries
+   -------------------------------------------------------------------------- */
+
+/* Tablet Breakpoint (768px to 1023px) */
+@media (min-width: 768px) {
+  .features-grid,
+  .events-grid,
+  .faq-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+/* Desktop Breakpoint (1024px and above) */
+@media (min-width: 1024px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 2.5rem;
+  }
+
+  header h1 {
+    font-size: 1.7rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  nav {
+    width: auto;
+  }
+
+  nav ul {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 0.3rem 0.5rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+    padding: 0.45rem 0.85rem;
+  }
+
+  .features-grid,
+  .faq-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}

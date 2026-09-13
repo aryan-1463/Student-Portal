@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="Electron" modified="2026-08-19T02:00:00.000Z" agent="Mozilla/5.0" version="21.6.8" type="device">
+  <diagram id="wf-03-login" name="Login Page Wireframe" compressed="false">
+    <mxGraphModel dx="1050" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="StudentHub - Login" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="200" y="10" width="400" height="30" as="geometry" /></mxCell>
+        <mxCell id="frame" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;strokeWidth=1;" vertex="1" parent="1"><mxGeometry x="40" y="45" width="720" height="1000" as="geometry" /></mxCell>
+        <mxCell id="hdr_bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CCCCCC;" vertex="1" parent="1"><mxGeometry x="50" y="55" width="700" height="50" as="geometry" /></mxCell>
+        <mxCell id="hdr_logo" value="[ Logo ] StudentHub" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="62" width="140" height="36" as="geometry" /></mxCell>
+        <mxCell id="hdr_nav" value="Home | About | Events | Dashboard | FAQ | Contact" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;" vertex="1" parent="1"><mxGeometry x="220" y="68" width="320" height="24" as="geometry" /></mxCell>
+        <mxCell id="hdr_auth" value="[ Login ] [ Register ]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="570" y="68" width="140" height="24" as="geometry" /></mxCell>
+
+        <!-- Login Form Section -->
+        <mxCell id="login_border" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#CC6666;dashed=1;dashPattern=8 4;strokeWidth=2;" vertex="1" parent="1"><mxGeometry x="60" y="120" width="680" height="440" as="geometry" /></mxCell>
+        <mxCell id="login_card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CCCCCC;shadow=1;arcSize=8;" vertex="1" parent="1"><mxGeometry x="180" y="150" width="440" height="380" as="geometry" /></mxCell>
+        <mxCell id="login_h2" value="Student Login" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="320" y="170" width="160" height="30" as="geometry" /></mxCell>
+        <mxCell id="login_lbl1" value="Email Address or Enrollment Number" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];strokeColor=none;fillColor=none;fontSize=11;" vertex="1" parent="1"><mxGeometry x="220" y="220" width="260" height="20" as="geometry" /></mxCell>
+        <mxCell id="login_inp1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;arcSize=20;" vertex="1" parent="1"><mxGeometry x="220" y="245" width="360" height="35" as="geometry" /></mxCell>
+        <mxCell id="login_lbl2" value="Password" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];strokeColor=none;fillColor=none;fontSize=11;" vertex="1" parent="1"><mxGeometry x="220" y="300" width="100" height="20" as="geometry" /></mxCell>
+        <mxCell id="login_inp2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#CCCCCC;arcSize=20;" vertex="1" parent="1"><mxGeometry x="220" y="325" width="360" height="35" as="geometry" /></mxCell>
+        <mxCell id="login_btn" value="Login" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2563EB;strokeColor=#1D4ED8;fontColor=#FFFFFF;fontSize=13;fontStyle=1;arcSize=40;" vertex="1" parent="1"><mxGeometry x="300" y="400" width="200" height="40" as="geometry" /></mxCell>
+        <mxCell id="login_link" value="Don't have an account? Register here" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];strokeColor=none;fillColor=none;fontSize=10;fontColor=#2563EB;" vertex="1" parent="1"><mxGeometry x="280" y="460" width="240" height="20" as="geometry" /></mxCell>
+
+        <mxCell id="ftr_bar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#BDBDBD;" vertex="1" parent="1"><mxGeometry x="50" y="600" width="700" height="40" as="geometry" /></mxCell>
+        <mxCell id="ftr_txt" value="(c) 2026 StudentHub Academic Portal | College Project" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;" vertex="1" parent="1"><mxGeometry x="200" y="608" width="400" height="24" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
