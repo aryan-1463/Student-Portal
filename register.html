@@ -32,40 +32,81 @@
     <section class="form-container">
       <h2>Student Registration</h2>
 
-      <form action="login.html" method="POST">
-        <p>
+      <form id="registrationForm" action="process_registration.php" method="POST" novalidate>
+        <div class="field-group">
           <label for="fullName">Full Name:</label>
-          <input type="text" id="fullName" name="fullName" required aria-required="true">
-        </p>
+          <input type="text" id="fullName" name="fullName" autocomplete="name" aria-describedby="fullNameError" required>
+          <small id="fullNameError" class="error-message" aria-live="polite"></small>
+        </div>
 
-        <p>
+        <div class="field-group">
           <label for="email">Email Address:</label>
-          <input type="email" id="email" name="email" required aria-required="true">
-        </p>
+          <input type="email" id="email" name="email" autocomplete="email" aria-describedby="emailError" required>
+          <small id="emailError" class="error-message" aria-live="polite"></small>
+        </div>
 
-        <p>
-          <label for="department">Department:</label>
-          <select id="department" name="department" required aria-required="true">
-            <option value="B.Tech">B.Tech</option>
-            <option value="BCA">BCA</option>
-            <option value="B.Sc">B.Sc IT</option>
+        <div class="field-group">
+          <label for="mobile">Mobile Number:</label>
+          <input type="tel" id="mobile" name="mobile" inputmode="numeric" maxlength="10" placeholder="10 digit mobile number" aria-describedby="mobileError" required>
+          <small id="mobileError" class="error-message" aria-live="polite"></small>
+        </div>
+
+        <div class="field-group">
+          <label for="course">Course:</label>
+          <select id="course" name="course" aria-describedby="courseError" required>
+            <option value="">Select course</option>
+            <option value="B.Tech">B.Tech</option><option value="BCA">BCA</option><option value="B.Sc IT">B.Sc IT</option>
           </select>
-        </p>
+          <small id="courseError" class="error-message" aria-live="polite"></small>
+        </div>
 
-        <p>
+        <div class="field-group">
+          <label for="year">Year:</label>
+          <select id="year" name="year" aria-describedby="yearError" required>
+            <option value="">Select year</option><option value="1">First Year</option><option value="2">Second Year</option><option value="3">Third Year</option><option value="4">Fourth Year</option>
+          </select>
+          <small id="yearError" class="error-message" aria-live="polite"></small>
+        </div>
+
+        <fieldset class="field-group"><legend>Gender:</legend>
+          <label class="radio-label"><input type="radio" name="gender" value="Male"> Male</label>
+          <label class="radio-label"><input type="radio" name="gender" value="Female"> Female</label>
+          <label class="radio-label"><input type="radio" name="gender" value="Other"> Other</label>
+          <input type="hidden" id="gender" aria-describedby="genderError">
+          <small id="genderError" class="error-message" aria-live="polite"></small>
+        </fieldset>
+
+        <div class="field-group">
           <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required aria-required="true">
-        </p>
+          <input type="password" id="password" name="password" autocomplete="new-password" aria-describedby="passwordError passwordStrength" required>
+          <small id="passwordError" class="error-message" aria-live="polite"></small>
+          <span id="passwordStrength" class="strength-text"></span>
+        </div>
 
-        <p>
+        <div class="field-group">
           <label for="confirmPassword">Confirm Password:</label>
-          <input type="password" id="confirmPassword" name="confirmPassword" required aria-required="true">
-        </p>
+          <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" aria-describedby="confirmPasswordError" required>
+          <small id="confirmPasswordError" class="error-message" aria-live="polite"></small>
+        </div>
 
-        <p class="form-actions">
+        <div class="field-group captcha-group">
+          <label for="captcha">Captcha:</label>
+          <canvas id="captchaCanvas" width="150" height="45" aria-label="Captcha code"></canvas>
+          <button type="button" id="newCaptcha" class="small-button">New code</button>
+          <input type="text" id="captcha" name="captcha" placeholder="Enter code shown" aria-describedby="captchaError" required>
+          <small id="captchaError" class="error-message" aria-live="polite"></small>
+        </div>
+
+        <div class="field-group terms-group">
+          <label class="check-label"><input type="checkbox" id="terms" name="terms" aria-describedby="termsError"> I accept the terms and conditions.</label>
+          <small id="termsError" class="error-message" aria-live="polite"></small>
+        </div>
+
+        <div class="form-actions">
           <button type="submit">Register</button>
           <button type="reset">Reset</button>
-        </p>
+        </div>
+        <p id="formResult" class="form-result" role="status" aria-live="polite"></p>
       </form>
 
       <p>Already have an account? <a href="login.html">Login here</a>.</p>
@@ -75,6 +116,8 @@
   <footer>
     <p>&copy; 2026 StudentHub Academic Portal | College Project</p>
   </footer>
+
+  <script src="js/script.js"></script>
 
 </body>
 </html>

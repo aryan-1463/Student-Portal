@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -28,31 +28,141 @@
     </nav>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="events-page-main">
     
-    <section>
-      <h2>Upcoming Events</h2>
+    <!-- Events Header -->
+    <section class="events-header-card">
+      <h2>Upcoming Campus Events</h2>
+      <p class="events-intro-text">
+        Explore workshops, hackathons, seminars, cultural festivals, and sports meets. 
+        Data is dynamically loaded from external JSON (<code>events.json</code>) using Fetch API with live search, filters, sorting, and pagination.
+      </p>
 
-      <div class="events-grid">
-        <article>
-          <h3>AI &amp; Web Development Workshop</h3>
-          <p><strong>Date:</strong> August 25, 2026</p>
-          <p><strong>Venue:</strong> Seminar Hall A</p>
-        </article>
+      <!-- Primary Controls (Search, Filter, Sort, Page Size) -->
+      <div class="events-controls-panel">
+        <div class="control-field search-field">
+          <label for="eventSearchInput">Search Events:</label>
+          <input type="text" id="eventSearchInput" placeholder="ðŸ” Search by title, venue, organizer...">
+        </div>
 
-        <article>
-          <h3>Campus Hackathon 2026</h3>
-          <p><strong>Date:</strong> September 10, 2026</p>
-          <p><strong>Venue:</strong> IT Lab</p>
-        </article>
+        <div class="control-field">
+          <label for="eventCategorySelect">Event Category:</label>
+          <select id="eventCategorySelect">
+            <option value="all">All Categories</option>
+          </select>
+        </div>
+
+        <div class="control-field">
+          <label for="eventSortSelect">Sort By:</label>
+          <select id="eventSortSelect">
+            <option value="date-asc">Date (Earliest First)</option>
+            <option value="date-desc">Date (Latest First)</option>
+            <option value="title-asc">Title (A - Z)</option>
+            <option value="title-desc">Title (Z - A)</option>
+          </select>
+        </div>
+
+        <div class="control-field">
+          <label for="eventPageSizeSelect">Events per Page:</label>
+          <select id="eventPageSizeSelect">
+            <option value="4">4 per page</option>
+            <option value="6" selected>6 per page</option>
+            <option value="9">9 per page</option>
+            <option value="15">15 per page (All)</option>
+          </select>
+        </div>
+
+        <div class="control-field action-field">
+          <label>&nbsp;</label>
+          <button type="button" id="eventRefreshBtn" class="btn-refresh">ðŸ”„ Refresh JSON</button>
+        </div>
+      </div>
+
+      <!-- Filter by Location -->
+      <div class="location-filter-panel">
+        <div class="location-filter-header">
+          <strong>ðŸ“ Filter by Location (Dependent Dropdowns):</strong>
+          <button type="button" id="resetLocationBtn" class="btn-text-reset">Reset Location</button>
+        </div>
+
+        <div class="dropdown-triple">
+          <div class="control-field">
+            <label for="eventCountrySelect">Country:</label>
+            <select id="eventCountrySelect">
+              <option value="">All Countries</option>
+            </select>
+          </div>
+
+          <div class="control-field">
+            <label for="eventStateSelect">State / Province:</label>
+            <select id="eventStateSelect" disabled>
+              <option value="">All States / Provinces</option>
+            </select>
+          </div>
+
+          <div class="control-field">
+            <label for="eventCitySelect">City:</label>
+            <select id="eventCitySelect" disabled>
+              <option value="">All Cities</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="eventLocationSummary" class="location-status-badge">
+          Showing events from all locations
+        </div>
+      </div>
+
+      <!-- Category Quick Filter Pills -->
+      <div class="category-pills-bar" id="categoryPillsBar" role="tablist" aria-label="Event category quick filters">
+        <button type="button" class="cat-pill active" data-category="all">âœ¨ All Events</button>
+        <button type="button" class="cat-pill" data-category="Workshop">ðŸ› ï¸ Workshops</button>
+        <button type="button" class="cat-pill" data-category="Hackathon">ðŸ’» Hackathons</button>
+        <button type="button" class="cat-pill" data-category="Cultural">ðŸŽ­ Cultural</button>
+        <button type="button" class="cat-pill" data-category="Sports">ðŸ† Sports</button>
+        <button type="button" class="cat-pill" data-category="Seminar">ðŸŽ“ Seminars</button>
+        <button type="button" class="cat-pill pill-bookmark" data-category="bookmarked" id="pillBookmarks">â¤ï¸ Bookmarked (<span id="bookmarkCount">0</span>)</button>
+      </div>
+
+      <!-- Status & Cache Meta Bar -->
+      <div class="events-meta-bar">
+        <span id="eventRecordSummary" class="record-summary">Loading events...</span>
+        <span id="eventCacheStatus" class="cache-badge">Connecting...</span>
+      </div>
+    </section>
+
+    <!-- Dynamic Events Grid -->
+    <section class="events-display-section">
+      <div id="eventsContainer" class="events-dynamic-grid">
+        <!-- Event cards rendered dynamically by js/script.js -->
+      </div>
+
+      <!-- Pagination Component -->
+      <div id="eventPagination" class="events-pagination">
+        <!-- Pagination buttons rendered dynamically -->
       </div>
     </section>
 
   </main>
 
+  <!-- Event Details & Registration Modal -->
+  <div id="eventDetailsModal" class="event-modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true" style="display: none;" hidden>
+    <div class="event-modal-container">
+      <button type="button" class="event-modal-close" id="closeEventModalBtn" aria-label="Close modal">&times;</button>
+      <div id="eventModalContent" class="event-modal-body">
+        <!-- Filled dynamically by js/script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="eventToast" class="event-toast" role="status" aria-live="polite" hidden></div>
+
   <footer>
     <p>&copy; 2026 StudentHub Academic Portal | College Project</p>
   </footer>
+
+  <script src="js/script.js"></script>
 
 </body>
 </html>

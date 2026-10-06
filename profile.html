@@ -32,14 +32,26 @@
     
     <section class="profile-card">
       <h2>Student Profile</h2>
-      <ul>
-        <li><strong>Name:</strong> <span>Aryan Joshi</span></li>
+      <ul id="profileDetails">
+        <li><strong>Name:</strong> <span data-profile="profileName">Aryan Joshi</span></li>
         <li><strong>Enrollment Number:</strong> <span>D26DCE156</span></li>
-        <li><strong>Department:</strong> <span>B.Tech</span></li>
-        <li><strong>Semester:</strong> <span>3rd Semester</span></li>
-        <li><strong>Year:</strong> <span>2nd Year</span></li>
-        <li><strong>Email:</strong> <span>aryanjoshi1463@gmail.com</span></li>
+        <li><strong>Department:</strong> <span data-profile="profileDepartment">B.Tech</span></li>
+        <li><strong>Semester:</strong> <span data-profile="profileSemester">3rd Semester</span></li>
+        <li><strong>Year:</strong> <span data-profile="profileYear">2nd Year</span></li>
+        <li><strong>Email:</strong> <span data-profile="profileEmail">aryanjoshi1463@gmail.com</span></li>
       </ul>
+      <button type="button" id="editProfile">Edit Profile</button>
+      <p class="profile-note">This demo saves profile changes only in this browser. A server and database are needed for a real account update.</p>
+
+      <form id="profileForm" hidden>
+        <div class="field-group"><label for="profileName">Name:</label><input type="text" id="profileName" value="Aryan Joshi" required></div>
+        <div class="field-group"><label for="profileDepartment">Department:</label><input type="text" id="profileDepartment" value="B.Tech" required></div>
+        <div class="field-group"><label for="profileSemester">Semester:</label><input type="text" id="profileSemester" value="3rd Semester" required></div>
+        <div class="field-group"><label for="profileYear">Year:</label><input type="text" id="profileYear" value="2nd Year" required></div>
+        <div class="field-group"><label for="profileEmail">Email:</label><input type="email" id="profileEmail" value="aryanjoshi1463@gmail.com" required></div>
+        <div class="form-actions"><button type="submit">Save Changes</button><button type="button" id="cancelEdit">Cancel</button></div>
+      </form>
+      <p id="profileMessage" class="form-result" role="status"></p>
     </section>
 
   </main>
@@ -47,6 +59,8 @@
   <footer>
     <p>&copy; 2026 StudentHub Academic Portal | College Project</p>
   </footer>
+
+  <script src="js/script.js"></script>
 
 </body>
 </html>

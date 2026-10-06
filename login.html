@@ -32,7 +32,8 @@
     <section class="form-container">
       <h2>Student Login</h2>
 
-      <form action="dashboard.html" method="GET">
+      <div id="loginAlert" class="login-alert-box" style="display:none;"></div>
+      <form id="loginForm" action="dashboard.html" method="POST">
         <p>
           <label for="loginEmail">Email Address or Enrollment Number:</label>
           <input type="text" id="loginEmail" name="loginEmail" required aria-required="true">
@@ -55,6 +56,8 @@
   <footer>
     <p>&copy; 2026 StudentHub Academic Portal | College Project</p>
   </footer>
+
+  <script src="js/script.js"></script>
 
 </body>
 </html>

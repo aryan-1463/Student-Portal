@@ -56,11 +56,40 @@
       </div>
     </section>
 
+    <section class="slider-section" aria-label="StudentHub highlights">
+      <h2>StudentHub Highlights</h2>
+      <div class="slider">
+        <article class="slide"><h3>Learn Together</h3><p>Join workshops, events and peer learning activities on campus.</p></article>
+        <article class="slide"><h3>Stay Updated</h3><p>Use the dashboard to check announcements and important notices.</p></article>
+        <article class="slide"><h3>Student Support</h3><p>Find useful information whenever you need it.</p></article>
+      </div>
+      <div class="slider-buttons">
+        <button type="button" class="previous-slide">Previous</button>
+        <button type="button" class="next-slide">Next</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Quick Information</h2>
+      <p>Click below to see a short message for StudentHub users.</p>
+      <button type="button" class="open-modal">Open message</button>
+    </section>
+
   </main>
+
+  <div class="student-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-box">
+      <button type="button" class="close-modal" aria-label="Close popup">×</button>
+      <h2 id="modal-title">Welcome, Student!</h2>
+      <p>Explore the portal to find events, FAQs and student services.</p>
+    </div>
+  </div>
 
   <footer>
     <p>&copy; 2026 StudentHub Academic Portal | College Project</p>
   </footer>
+
+  <script src="js/script.js"></script>
 
 </body>
 </html>

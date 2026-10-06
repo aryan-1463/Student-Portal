@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "name": "Aryan Joshi",
+    "department": "Computer Engineering",
+    "year": "2nd Year",
+    "gpa": 3.85,
+    "email": "aryanjoshi1463@gmail.com",
+    "country": "India",
+    "state": "Gujarat",
+    "city": "Ahmedabad"
+  },
+  {
+    "id": 2,
+    "name": "Priya Sharma",
+    "department": "Information Technology",
+    "year": "3rd Year",
+    "gpa": 3.92,
+    "email": "priya.sharma@example.com",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Mumbai"
+  },
+  {
+    "id": 3,
+    "name": "Rohan Patel",
+    "department": "Computer Engineering",
+    "year": "1st Year",
+    "gpa": 3.65,
+    "email": "rohan.patel@example.com",
+    "country": "India",
+    "state": "Gujarat",
+    "city": "Surat"
+  },
+  {
+    "id": 4,
+    "name": "Ananya Verma",
+    "department": "Electronics",
+    "year": "4th Year",
+    "gpa": 3.78,
+    "email": "ananya.v@example.com",
+    "country": "India",
+    "state": "Delhi",
+    "city": "New Delhi"
+  },
+  {
+    "id": 5,
+    "name": "Siddharth Malhotra",
+    "department": "Mechanical",
+    "year": "3rd Year",
+    "gpa": 3.42,
+    "email": "siddharth.m@example.com",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Pune"
+  },
+  {
+    "id": 6,
+    "name": "Emily Watson",
+    "department": "Computer Engineering",
+    "year": "2nd Year",
+    "gpa": 3.95,
+    "email": "emily.watson@example.com",
+    "country": "USA",
+    "state": "California",
+    "city": "San Francisco"
+  },
+  {
+    "id": 7,
+    "name": "Liam Smith",
+    "department": "Information Technology",
+    "year": "4th Year",
+    "gpa": 3.88,
+    "email": "liam.smith@example.com",
+    "country": "USA",
+    "state": "New York",
+    "city": "New York City"
+  },
+  {
+    "id": 8,
+    "name": "Sophia Johnson",
+    "department": "Civil",
+    "year": "1st Year",
+    "gpa": 3.50,
+    "email": "sophia.j@example.com",
+    "country": "USA",
+    "state": "Texas",
+    "city": "Austin"
+  },
+  {
+    "id": 9,
+    "name": "Oliver Brown",
+    "department": "Electronics",
+    "year": "2nd Year",
+    "gpa": 3.70,
+    "email": "oliver.b@example.com",
+    "country": "UK",
+    "state": "England",
+    "city": "London"
+  },
+  {
+    "id": 10,
+    "name": "Isla Taylor",
+    "department": "Computer Engineering",
+    "year": "3rd Year",
+    "gpa": 3.82,
+    "email": "isla.taylor@example.com",
+    "country": "UK",
+    "state": "Scotland",
+    "city": "Edinburgh"
+  },
+  {
+    "id": 11,
+    "name": "Kabir Mehta",
+    "department": "Information Technology",
+    "year": "2nd Year",
+    "gpa": 3.60,
+    "email": "kabir.mehta@example.com",
+    "country": "India",
+    "state": "Gujarat",
+    "city": "Vadodara"
+  },
+  {
+    "id": 12,
+    "name": "Sneha Roy",
+    "department": "Civil",
+    "year": "3rd Year",
+    "gpa": 3.75,
+    "email": "sneha.roy@example.com",
+    "country": "India",
+    "state": "Maharashtra",
+    "city": "Nagpur"
+  },
+  {
+    "id": 13,
+    "name": "James Wilson",
+    "department": "Mechanical",
+    "year": "4th Year",
+    "gpa": 3.55,
+    "email": "james.w@example.com",
+    "country": "UK",
+    "state": "England",
+    "city": "Manchester"
+  },
+  {
+    "id": 14,
+    "name": "Chloe Davies",
+    "department": "Electronics",
+    "year": "1st Year",
+    "gpa": 3.68,
+    "email": "chloe.d@example.com",
+    "country": "USA",
+    "state": "California",
+    "city": "Los Angeles"
+  },
+  {
+    "id": 15,
+    "name": "Vikram Desai",
+    "department": "Computer Engineering",
+    "year": "4th Year",
+    "gpa": 3.98,
+    "email": "vikram.desai@example.com",
+    "country": "India",
+    "state": "Gujarat",
+    "city": "Rajkot"
+  }
+]
