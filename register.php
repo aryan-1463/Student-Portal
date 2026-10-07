@@ -183,7 +183,7 @@ function old($field, $default = '') {
       </form>
 
       <p style="margin-top: 1rem;">Already have an account? <a href="login.html">Login here</a>.</p>
-      <p>View registered students: <a href="records.php"><strong>View Stored Records &rarr;</strong></a></p>
+      
     </section>
   </main>
 
