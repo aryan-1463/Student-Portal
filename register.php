@@ -43,7 +43,7 @@ function old($field, $default = '') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Student Registration - StudentHub Portal">
   <title>Register | StudentHub</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20261007095528">
 </head>
 <body>
 
@@ -72,7 +72,7 @@ function old($field, $default = '') {
       <h2>Student Registration</h2>
 
       <?php if (!empty($successMessage)): ?>
-        <div class="alert alert-success" role="status" aria-live="polite">
+        <div class="alert alert-success" role="status" aria-live="polite" style="background: rgba(22, 163, 74, 0.22) !important; border: 1px solid #22c55e !important; border-left: 6px solid #22c55e !important; color: #86efac !important; padding: 1rem 1.25rem !important; border-radius: 8px !important; margin-bottom: 1.25rem !important;">
           <strong>Registration Successful!</strong> <?php echo htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8'); ?>
           <div style="margin-top: 0.5rem;">
             <a href="records.php" style="color: #065f46; text-decoration: underline; font-weight: 700;">View All Registered Records &rarr;</a>
@@ -81,7 +81,7 @@ function old($field, $default = '') {
       <?php endif; ?>
 
       <?php if (!empty($formErrors)): ?>
-        <div class="alert alert-error" role="alert" aria-live="assertive">
+        <div class="alert alert-error" role="alert" aria-live="assertive" style="background: rgba(220, 38, 38, 0.22) !important; border: 1px solid #ef4444 !important; border-left: 6px solid #ef4444 !important; color: #fca5a5 !important; padding: 1rem 1.25rem !important; border-radius: 8px !important; margin-bottom: 1.25rem !important;">
           <strong>Please correct the following errors:</strong>
           <ul>
             <?php foreach ($formErrors as $err): ?>
