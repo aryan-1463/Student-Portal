@@ -6,27 +6,47 @@ $jsonFile = __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'regi
 
 $records = [];
 
-// read student records from csv
-if (file_exists($csvFile) && filesize($csvFile) > 0) {
+// read student records from MySQL database (Practical 8 & 9)
+$dbHost = '127.0.0.1';
+$dbPort = 3306;
+$dbUser = 'root';
+$dbPass = '';
+$dbName = 'studenthub_db';
+
+$mysqli = @new mysqli($dbHost, $dbUser, $dbPass, $dbName, $dbPort);
+if ($mysqli && !$mysqli->connect_errno) {
+    $mysqli->set_charset("utf8mb4");
+    $res = $mysqli->query("SELECT enrollment_no, full_name AS name, email, mobile, course, year, gender, created_at FROM students ORDER BY student_id DESC");
+    if ($res) {
+        while ($row = $res->fetch_assoc()) {
+            $records[] = $row;
+        }
+        $res->free();
+    }
+    $mysqli->close();
+}
+
+// fallback to csv if database has no records
+if (empty($records) && file_exists($csvFile) && filesize($csvFile) > 0) {
     if (($handle = fopen($csvFile, "r")) !== false) {
         $header = fgetcsv($handle);
         while (($row = fgetcsv($handle)) !== false) {
             if (count($row) >= 6) {
                 $records[] = [
-                    'name'       => $row[0] ?? '',
-                    'email'      => $row[1] ?? '',
-                    'mobile'     => $row[2] ?? '',
-                    'course'     => $row[3] ?? '',
-                    'year'       => $row[4] ?? '',
-                    'gender'     => $row[5] ?? '',
-                    'created_at' => $row[7] ?? ($row[6] ?? '')
+                    'enrollment_no' => '-',
+                    'name'          => $row[0] ?? '',
+                    'email'         => $row[1] ?? '',
+                    'mobile'        => $row[2] ?? '',
+                    'course'        => $row[3] ?? '',
+                    'year'          => $row[4] ?? '',
+                    'gender'        => $row[5] ?? '',
+                    'created_at'    => $row[7] ?? ($row[6] ?? '')
                 ];
             }
         }
         fclose($handle);
     }
-} elseif (file_exists($jsonFile) && filesize($jsonFile) > 0) {
-    // fallback to json if csv is not present
+} elseif (empty($records) && file_exists($jsonFile) && filesize($jsonFile) > 0) {
     $raw = file_get_contents($jsonFile);
     $decoded = json_decode($raw, true);
     if (is_array($decoded)) {
@@ -70,7 +90,7 @@ if (file_exists($csvFile) && filesize($csvFile) > 0) {
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <div>
           <h2>Registered Students List</h2>
-          <p>Registered student records loaded from server data files (CSV and JSON).</p>
+          <p>Live student records retrieved from MySQL database (<code>studenthub_db.students</code>).</p>
         </div>
         <div>
           <span class="badge-tag">Total Records: <?php echo count($records); ?></span>
@@ -91,6 +111,7 @@ if (file_exists($csvFile) && filesize($csvFile) > 0) {
             <thead>
               <tr>
                 <th>#</th>
+                <th>Enrollment</th>
                 <th>Full Name</th>
                 <th>Email Address</th>
                 <th>Mobile Number</th>
@@ -104,6 +125,7 @@ if (file_exists($csvFile) && filesize($csvFile) > 0) {
               <?php foreach ($records as $index => $item): ?>
                 <tr>
                   <td><strong><?php echo $index + 1; ?></strong></td>
+                  <td><code><?php echo htmlspecialchars($item['enrollment_no'] ?? '-', ENT_QUOTES, 'UTF-8'); ?></code></td>
                   <td><?php echo htmlspecialchars($item['name'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
                   <td><?php echo htmlspecialchars($item['email'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
                   <td><?php echo htmlspecialchars($item['mobile'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
