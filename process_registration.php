@@ -68,8 +68,8 @@ if ($gender === '' || !in_array($gender, $validGenders, true)) {
 
 if ($password === '') {
     $errors[] = "Password is required.";
-} elseif (strlen($password) < 8) {
-    $errors[] = "Password must be at least 8 characters.";
+} elseif (strlen($password) < 4) {
+    $errors[] = "Password must be at least 4 characters.";
 }
 
 if ($confirmPassword === '') {

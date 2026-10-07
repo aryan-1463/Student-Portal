@@ -277,8 +277,8 @@ document.addEventListener("DOMContentLoaded", function () {
       var strength = document.getElementById("passwordStrength");
       if (!pwd) return true;
       var val = pwd.value;
-      var score = (val.length >= 8) + /[A-Z]/.test(val) + /[0-9]/.test(val) + /[^A-Za-z0-9]/.test(val);
-      var msg = (val && score < 3) ? "Use 8+ chars with uppercase, number & symbol." : "";
+      var score = (val.length >= 4) + /[A-Z]/.test(val) + /[0-9]/.test(val) + /[^A-Za-z0-9]/.test(val);
+      var msg = (val && val.length < 4) ? "Password must be at least 4 characters." : "";
       setErr(pwd, msg);
       if (strength) {
         strength.textContent = val ? ["", "Weak", "Weak", "Medium", "Strong", "Strong"][score] : "";
