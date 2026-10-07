@@ -55,11 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (nav) {
       var menuBtn = document.createElement("button");
       menuBtn.className = "menu-button";
-      menuBtn.textContent = "â˜° Menu";
+      menuBtn.textContent = "☰ Menu";
       header.insertBefore(menuBtn, nav);
       menuBtn.onclick = function () {
         var open = nav.classList.toggle("nav-open");
-        menuBtn.textContent = open ? "âœ• Close" : "â˜° Menu";
+        menuBtn.textContent = open ? "✕ Close" : "☰ Menu";
       };
 
       var navUl = nav.querySelector("ul");
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
             badgeSpan.className = "user-badge-nav";
             var sName = (currentUser && currentUser.name) ? currentUser.name : "Aryan";
             var sId = (currentUser && currentUser.id) ? currentUser.id : "D26DCE156";
-            badgeSpan.textContent = "ðŸ‘¤ " + sName + " (" + sId + ")";
+            badgeSpan.textContent = "👤 " + sName + " (" + sId + ")";
             badgeLi.appendChild(badgeSpan);
             navUl.appendChild(badgeLi);
           }
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var logoutA = document.createElement("a");
             logoutA.href = "#";
             logoutA.className = "logout-btn";
-            logoutA.textContent = "ðŸšª Logout";
+            logoutA.textContent = "🚪 Logout";
             logoutA.title = "Log out of StudentHub";
             logoutA.onclick = function (e) {
               e.preventDefault();
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function setTheme(theme) {
       body.classList.toggle("dark-theme", theme === "dark");
-      themeBtn.textContent = theme === "dark" ? "â˜€ Light" : "ðŸŒ™ Dark";
+      themeBtn.textContent = theme === "dark" ? "☀ Light" : "🌙 Dark";
       localStorage.setItem("studentHubTheme", theme);
     }
     setTheme(localStorage.getItem("studentHubTheme") || "light");
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
         loginForm.parentNode.insertBefore(alertBox, loginForm);
       }
       alertBox.style.display = "flex";
-      alertBox.textContent = "ðŸ”’ " + noticeMsg;
+      alertBox.textContent = "🔒 " + noticeMsg;
     }
 
     loginForm.onsubmit = function (e) {
@@ -515,13 +515,13 @@ document.addEventListener("DOMContentLoaded", function () {
             '</div>' +
             '<div class="event-media-bottom-bar">' +
               (ev.featured ? '<span class="event-featured-tag">â­ Featured</span>' : '<span></span>') +
-              (ev.capacity ? '<span class="event-capacity-tag">ðŸ‘¥ ' + ev.capacity + '</span>' : '') +
+              (ev.capacity ? '<span class="event-capacity-tag">👥 ' + ev.capacity + '</span>' : '') +
             '</div>' +
           '</div>' +
           '<div class="event-card-content">' +
             '<h3 class="event-card-title">' + ev.title + '</h3>' +
             '<div class="event-meta-info">' +
-              '<p class="meta-item"><span class="meta-icon">ðŸ“…</span> ' + ev.date + (ev.time ? ' &bull; <small>' + ev.time + '</small>' : '') + '</p>' +
+              '<p class="meta-item"><span class="meta-icon">📅</span> ' + ev.date + (ev.time ? ' &bull; <small>' + ev.time + '</small>' : '') + '</p>' +
               '<p class="meta-item"><span class="meta-icon">ðŸ“</span> ' + (ev.venue || ev.location) + '</p>' +
               '<p class="meta-item"><span class="meta-icon">ðŸŒ</span> ' + ev.city + ', ' + ev.state + ', ' + ev.country + '</p>' +
             '</div>' +
@@ -530,7 +530,7 @@ document.addEventListener("DOMContentLoaded", function () {
               '<div class="event-organizer-info"><span class="meta-icon">ðŸ¢</span> ' + ev.organizer + '</div>' +
               '<div class="event-card-actions">' +
                 '<button type="button" class="btn-card-details" data-id="' + ev.id + '">Details</button>' +
-                '<button type="button" class="btn-card-rsvp ' + (reg ? 'registered' : '') + '" data-id="' + ev.id + '">' + (reg ? 'âœ“ Registered' : 'RSVP / Join') + '</button>' +
+                '<button type="button" class="btn-card-rsvp ' + (reg ? 'registered' : '') + '" data-id="' + ev.id + '">' + (reg ? '✓ Registered' : 'RSVP / Join') + '</button>' +
               '</div>' +
             '</div>' +
           '</div>' +
@@ -573,16 +573,16 @@ document.addEventListener("DOMContentLoaded", function () {
           '<div class="modal-event-details">' +
             '<h2>' + ev.title + '</h2>' +
             '<div class="modal-meta-grid">' +
-              '<div class="modal-meta-box"><span>ðŸ“…</span><div><strong>Date & Time</strong><p>' + ev.date + '<br><small>' + (ev.time || "All Day") + '</small></p></div></div>' +
+              '<div class="modal-meta-box"><span>📅</span><div><strong>Date & Time</strong><p>' + ev.date + '<br><small>' + (ev.time || "All Day") + '</small></p></div></div>' +
               '<div class="modal-meta-box"><span>ðŸ“</span><div><strong>Venue</strong><p>' + (ev.venue || ev.location) + '</p></div></div>' +
               '<div class="modal-meta-box"><span>ðŸŒ</span><div><strong>Location</strong><p>' + ev.city + ', ' + ev.state + '<br><small>' + ev.country + '</small></p></div></div>' +
               '<div class="modal-meta-box"><span>ðŸ¢</span><div><strong>Organizer</strong><p>' + ev.organizer + '</p></div></div>' +
             '</div>' +
             '<div class="modal-section"><h4>About Event</h4><p class="modal-desc-full">' + ev.description + '</p></div>' +
-            (ev.capacity ? '<div class="modal-capacity-info">ðŸ‘¥ Capacity: ' + ev.capacity + '</div>' : '') +
+            (ev.capacity ? '<div class="modal-capacity-info">👥 Capacity: ' + ev.capacity + '</div>' : '') +
             '<div class="modal-actions-bar">' +
               '<button type="button" class="btn-modal-bookmark ' + (fav ? 'active' : '') + '" id="mFav">' + (fav ? 'â¤ï¸ Bookmarked' : 'ðŸ¤ Bookmark') + '</button>' +
-              '<button type="button" class="btn-modal-rsvp ' + (reg ? 'registered' : '') + '" id="mReg">' + (reg ? 'âœ“ Registered' : 'ðŸš€ RSVP Now') + '</button>' +
+              '<button type="button" class="btn-modal-rsvp ' + (reg ? 'registered' : '') + '" id="mReg">' + (reg ? '✓ Registered' : '🚀 RSVP Now') + '</button>' +
             '</div>' +
           '</div>'
         );
@@ -597,7 +597,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById("mReg").onclick = function () {
           var idx = registered.indexOf(ev.id);
-          if (idx === -1) { registered.push(ev.id); toast("ðŸŽ‰ Registered for " + ev.title + "!"); }
+          if (idx === -1) { registered.push(ev.id); toast("🎉 Registered for " + ev.title + "!"); }
           else { registered.splice(idx, 1); toast("Registration cancelled."); }
           localStorage.setItem("sh_registrations", JSON.stringify(registered));
           render();
@@ -617,7 +617,7 @@ document.addEventListener("DOMContentLoaded", function () {
         e.stopPropagation();
         var id = parseInt(b.dataset.id, 10);
         var idx = registered.indexOf(id);
-        if (idx === -1) { registered.push(id); toast("ðŸŽ‰ Registered successfully!"); }
+        if (idx === -1) { registered.push(id); toast("🎉 Registered successfully!"); }
         else { registered.splice(idx, 1); toast("Registration cancelled."); }
         localStorage.setItem("sh_registrations", JSON.stringify(registered));
         render();
