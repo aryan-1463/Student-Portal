@@ -1789,3 +1789,45 @@ body.dark-theme .event-toast {
 .dark-theme .records-table tr:hover {
   background: rgba(255, 255, 255, 0.03);
 }
+
+/* Alerts */
+.alert {
+  padding: 0.9rem 1.2rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.alert-error {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-left: 5px solid #dc2626;
+}
+.alert-error ul {
+  margin: 0.4rem 0 0 1.2rem;
+  padding: 0;
+}
+.alert-error li {
+  margin-bottom: 0.2rem;
+}
+.alert-success {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+  border-left: 5px solid #16a34a;
+}
+body.dark-theme .alert-error,
+.dark-theme .alert-error {
+  background: rgba(220, 38, 38, 0.22);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  border-left: 5px solid #ef4444;
+}
+body.dark-theme .alert-success,
+.dark-theme .alert-success {
+  background: rgba(22, 163, 74, 0.22);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.45);
+  border-left: 5px solid #22c55e;
+}
