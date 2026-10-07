@@ -55,11 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (nav) {
       var menuBtn = document.createElement("button");
       menuBtn.className = "menu-button";
-      menuBtn.textContent = "☰ Menu";
+      menuBtn.innerHTML = "&#9776; Menu";
       header.insertBefore(menuBtn, nav);
       menuBtn.onclick = function () {
         var open = nav.classList.toggle("nav-open");
-        menuBtn.textContent = open ? "✕ Close" : "☰ Menu";
+        menuBtn.innerHTML = open ? "&#10005; Close" : "&#9776; Menu";
       };
 
       var navUl = nav.querySelector("ul");
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
             badgeSpan.className = "user-badge-nav";
             var sName = (currentUser && currentUser.name) ? currentUser.name : "Aryan";
             var sId = (currentUser && currentUser.id) ? currentUser.id : "D26DCE156";
-            badgeSpan.textContent = "👤 " + sName + " (" + sId + ")";
+            badgeSpan.innerHTML = "&#128100; " + sName + " (" + sId + ")";
             badgeLi.appendChild(badgeSpan);
             navUl.appendChild(badgeLi);
           }
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var logoutA = document.createElement("a");
             logoutA.href = "#";
             logoutA.className = "logout-btn";
-            logoutA.textContent = "🚪 Logout";
+            logoutA.innerHTML = "&#128682; Logout";
             logoutA.title = "Log out of StudentHub";
             logoutA.onclick = function (e) {
               e.preventDefault();
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function setTheme(theme) {
       body.classList.toggle("dark-theme", theme === "dark");
-      themeBtn.textContent = theme === "dark" ? "☀ Light" : "🌙 Dark";
+      themeBtn.innerHTML = theme === "dark" ? "&#9728; Light" : "&#127769; Dark";
       localStorage.setItem("studentHubTheme", theme);
     }
     setTheme(localStorage.getItem("studentHubTheme") || "light");
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
         loginForm.parentNode.insertBefore(alertBox, loginForm);
       }
       alertBox.style.display = "flex";
-      alertBox.textContent = "🔒 " + noticeMsg;
+      alertBox.innerHTML = "&#128274; " + noticeMsg;
     }
 
     loginForm.onsubmit = function (e) {
