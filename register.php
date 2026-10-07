@@ -75,7 +75,7 @@ function old($field, $default = '') {
         <div class="alert alert-success" role="status" aria-live="polite" style="background: rgba(22, 163, 74, 0.22) !important; border: 1px solid #22c55e !important; border-left: 6px solid #22c55e !important; color: #86efac !important; padding: 1rem 1.25rem !important; border-radius: 8px !important; margin-bottom: 1.25rem !important;">
           <strong>Registration Successful!</strong> <?php echo htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8'); ?>
           <div style="margin-top: 0.5rem;">
-            <a href="records.php" style="color: #065f46; text-decoration: underline; font-weight: 700;">View All Registered Records &rarr;</a>
+            <a href="records.php" style="color: #4ade80; text-decoration: underline; font-weight: 700;">View All Registered Records &rarr;</a>
           </div>
         </div>
       <?php endif; ?>
