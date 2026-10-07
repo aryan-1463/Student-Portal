@@ -54,7 +54,6 @@ function old($field, $default = '') {
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="register.php" aria-current="page">Register</a></li>
-        <li><a href="records.php">Records</a></li>
         <li><a href="login.html">Login</a></li>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="profile.html">Profile</a></li>
