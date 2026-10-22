@@ -1,8 +1,14 @@
-﻿<?php
+<?php
 // manage_events.php - StudentHub Event Management CRUD Module
 // Practical 12: Event Management CRUD with Poster Upload and File Validation (MySQLi Prepared Statements)
 
 session_start();
+
+// Enforce Admin Role (RBAC)
+if (empty($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'admin') {
+    header("Location: login.php?msg=unauthorized");
+    exit;
+}
 
 $host = '127.0.0.1';
 $user = 'root';
@@ -232,8 +238,8 @@ unset($_SESSION['flash_msg']);
       margin-bottom: 1.5rem;
     }
     .filter-card {
-      background: var(--card-bg, #1e293b);
-      border: 1px solid var(--border-color, #334155);
+      background: #1e293b;
+      border: 1px solid #334155;
       border-radius: 10px;
       padding: 1.25rem;
       margin-bottom: 1.75rem;
@@ -248,9 +254,9 @@ unset($_SESSION['flash_msg']);
     .filter-form input, .filter-form select {
       padding: 0.65rem 0.9rem;
       border-radius: 6px;
-      border: 1px solid var(--border-color, #475569);
-      background: var(--bg-color, #0f172a);
-      color: var(--text-color, #f8fafc);
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: #f8fafc;
       font-size: 0.92rem;
       outline: none;
     }
@@ -302,8 +308,8 @@ unset($_SESSION['flash_msg']);
       margin-bottom: 2rem;
     }
     .event-card {
-      background: var(--card-bg, #1e293b);
-      border: 1px solid var(--border-color, #334155);
+      background: #1e293b;
+      border: 1px solid #334155;
       border-radius: 12px;
       overflow: hidden;
       display: flex;
@@ -357,22 +363,22 @@ unset($_SESSION['flash_msg']);
       flex-direction: column;
       flex: 1;
     }
-    .event-title {
+    .event-card .event-title {
       font-size: 1.15rem;
-      color: #f8fafc;
+      color: #f8fafc !important;
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
-    .event-desc {
-      color: #94a3b8;
+    .event-card .event-desc {
+      color: #cbd5e1 !important;
       font-size: 0.88rem;
       line-height: 1.45;
       margin-bottom: 1rem;
       flex: 1;
     }
-    .event-meta {
+    .event-card .event-meta {
       font-size: 0.82rem;
-      color: #cbd5e1;
+      color: #94a3b8 !important;
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
@@ -450,12 +456,18 @@ unset($_SESSION['flash_msg']);
       font-size: 0.95rem; display: flex; align-items: center; gap: 0.6rem;
     }
     .alert-success {
-      background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e;
-      border-left: 5px solid #22c55e; color: #86efac;
+      background: #dcfce7;
+      border: 1px solid #22c55e;
+      border-left: 5px solid #16a34a;
+      color: #14532d;
+      font-weight: 600;
     }
     .alert-error {
-      background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444;
-      border-left: 5px solid #ef4444; color: #fca5a5;
+      background: #fee2e2;
+      border: 1px solid #ef4444;
+      border-left: 5px solid #dc2626;
+      color: #7f1d1d;
+      font-weight: 600;
     }
   </style>
 </head>

@@ -1,8 +1,14 @@
-﻿<?php
+<?php
 // manage_students.php - StudentHub Student Management CRUD Module
 // Practical 11: Add, View, Edit, Delete, Search, and Filter using MySQLi Prepared Statements
 
 session_start();
+
+// Enforce Admin Role (RBAC)
+if (empty($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'admin') {
+    header("Location: login.php?msg=unauthorized");
+    exit;
+}
 
 // Database configuration
 $host = '127.0.0.1';
@@ -174,8 +180,8 @@ unset($_SESSION['flash_msg']);
       margin-bottom: 1.5rem;
     }
     .filter-card {
-      background: var(--card-bg, #1e293b);
-      border: 1px solid var(--border-color, #334155);
+      background: #1e293b !important;
+      border: 1px solid #334155 !important;
       border-radius: 10px;
       padding: 1.25rem;
       margin-bottom: 1.75rem;
@@ -190,14 +196,23 @@ unset($_SESSION['flash_msg']);
     .filter-form input, .filter-form select {
       padding: 0.65rem 0.9rem;
       border-radius: 6px;
-      border: 1px solid var(--border-color, #475569);
-      background: var(--bg-color, #0f172a);
-      color: var(--text-color, #f8fafc);
+      border: 1px solid #475569 !important;
+      background: #0f172a !important;
+      color: #f8fafc !important;
       font-size: 0.92rem;
       outline: none;
     }
+    .filter-form input::placeholder {
+      color: #94a3b8 !important;
+    }
+    .filter-form input:focus, .filter-form select:focus {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2) !important;
+    }
     .filter-form input[type="text"] {
       flex: 1 1 240px;
+      background: #0f172a !important;
+      color: #f8fafc !important;
     }
     .btn {
       display: inline-flex;
@@ -338,14 +353,15 @@ unset($_SESSION['flash_msg']);
       width: 100%;
       padding: 0.65rem 0.85rem;
       border-radius: 6px;
-      border: 1px solid #475569;
-      background: #0f172a;
-      color: #f8fafc;
+      border: 1px solid #475569 !important;
+      background: #0f172a !important;
+      color: #f8fafc !important;
       font-size: 0.92rem;
       outline: none;
     }
     .form-row input:focus, .form-row select:focus {
-      border-color: #38bdf8;
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2) !important;
     }
     .form-grid-2 {
       display: grid;
@@ -371,16 +387,18 @@ unset($_SESSION['flash_msg']);
       gap: 0.6rem;
     }
     .alert-success {
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid #22c55e;
-      border-left: 5px solid #22c55e;
-      color: #86efac;
+      background: #dcfce7 !important;
+      border: 1px solid #22c55e !important;
+      border-left: 5px solid #16a34a !important;
+      color: #14532d !important;
+      font-weight: 700 !important;
     }
     .alert-error {
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid #ef4444;
-      border-left: 5px solid #ef4444;
-      color: #fca5a5;
+      background: #fee2e2 !important;
+      border: 1px solid #ef4444 !important;
+      border-left: 5px solid #dc2626 !important;
+      color: #7f1d1d !important;
+      font-weight: 700 !important;
     }
   </style>
 </head>

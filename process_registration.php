@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -243,6 +243,57 @@ file_put_contents(
     json_encode($jsonRecords, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
     LOCK_EX
 );
+
+// Auto-sync files to Desktop StudentHub data folder
+$desktopDataDir = 'C:/Users/aryan/OneDrive/Desktop/Student Hub/StudentHub/data';
+if (is_dir($desktopDataDir)) {
+    @copy($csvFile, $desktopDataDir . DIRECTORY_SEPARATOR . 'registrations.csv');
+    @copy($jsonFile, $desktopDataDir . DIRECTORY_SEPARATOR . 'registrations.json');
+}
+
+// Auto-sync files to Practical-7 submissions (both Desktop and htdocs)
+$p7Dirs = [
+    'C:/Users/aryan/OneDrive/Desktop/Practical-7/data',
+    'C:/xampp/htdocs/Practical-7/data'
+];
+foreach ($p7Dirs as $p7Dir) {
+    if (is_dir($p7Dir)) {
+        $p7Json = $p7Dir . DIRECTORY_SEPARATOR . 'submissions.json';
+        $p7Csv  = $p7Dir . DIRECTORY_SEPARATOR . 'submissions.csv';
+        if (file_exists($p7Json)) {
+            $p7Data = json_decode(file_get_contents($p7Json), true) ?: [];
+            $p7Data[] = [
+                'id'         => 'PR7-' . date('Ymd') . '-' . strtoupper(substr(md5($email . time()), 0, 4)),
+                'timestamp'  => $createdAt,
+                'fullname'   => $fullName,
+                'email'      => $email,
+                'phone'      => $mobile,
+                'gender'     => $gender,
+                'department' => $course,
+                'skills'     => ['HTML5 and CSS3', 'PHP and MySQL'],
+                'comments'   => 'Registered via StudentHub'
+            ];
+            @file_put_contents($p7Json, json_encode($p7Data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        }
+        if (file_exists($p7Csv)) {
+            $p7Fp = @fopen($p7Csv, 'a');
+            if ($p7Fp) {
+                @fputcsv($p7Fp, [
+                    'PR7-' . date('Ymd') . '-' . strtoupper(substr(md5($email . time()), 0, 4)),
+                    $createdAt,
+                    $fullName,
+                    $email,
+                    $mobile,
+                    $gender,
+                    $course,
+                    'HTML5 and CSS3, PHP and MySQL',
+                    'Registered via StudentHub'
+                ]);
+                @fclose($p7Fp);
+            }
+        }
+    }
+}
 
 // show success and clear captcha
 $_SESSION['success_message'] = "Registration completed successfully!";

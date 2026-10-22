@@ -1,4 +1,4 @@
-﻿// StudentHub Portal - script.js
+// StudentHub Portal - script.js
 document.addEventListener("DOMContentLoaded", function () {
 
   // Authentication and navigation
@@ -6,7 +6,28 @@ document.addEventListener("DOMContentLoaded", function () {
   var header = document.querySelector("header");
   var nav = document.querySelector("nav");
 
-  var isLoggedIn = localStorage.getItem("studentHubLoggedIn") === "true";
+  // Helper to read cookie
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  var cookieLoggedIn = getCookie("studentHubLoggedIn") === "true" || !!getCookie("studentHubRole");
+  if (cookieLoggedIn) {
+    localStorage.setItem("studentHubLoggedIn", "true");
+    if (!localStorage.getItem("studentHubUser")) {
+      var cookieName = getCookie("studentHubUserName") || "Aryan Joshi";
+      var cookieId = getCookie("studentHubUserId") || "D26DCE156";
+      var cookieRole = getCookie("studentHubRole") || "student";
+      localStorage.setItem("studentHubUser", JSON.stringify({
+        name: cookieName,
+        id: cookieId,
+        role: cookieRole
+      }));
+    }
+  }
+
+  var isLoggedIn = localStorage.getItem("studentHubLoggedIn") === "true" || cookieLoggedIn;
   var currentUser = null;
   try {
     currentUser = JSON.parse(localStorage.getItem("studentHubUser") || "null");
@@ -26,13 +47,21 @@ document.addEventListener("DOMContentLoaded", function () {
   var currentPage = currentPath.split("/").pop().toLowerCase() || "index.html";
   if (currentPage === "") currentPage = "index.html";
 
-  // Route Guard: Protected pages require student login
-  var protectedPages = ["dashboard.html", "profile.html", "admin.html", "feedback.html"];
-  var guestPages = ["register.html", "login.html"];
+  // Role Detection
+  var userRole = (currentUser && currentUser.role) ? currentUser.role : (getCookie("studentHubRole") || "student");
+  var isAdmin = isLoggedIn && (userRole === "admin");
 
+  // Route Guard: Protected pages require student login
   if (!isLoggedIn && (currentPage === "dashboard.html" || currentPage === "profile.html" || currentPage === "admin.html")) {
     sessionStorage.setItem("loginNotice", "Please log in first to access the Student Portal (" + currentPage.replace(".html", "").toUpperCase() + ").");
-    window.location.href = "login.html";
+    window.location.href = "login.php";
+    return;
+  }
+
+  // RBAC Guard: Block non-admins from admin.html
+  if (currentPage === "admin.html" && !isAdmin) {
+    alert("Access Denied: Only administrators have permission to access the Admin Panel.");
+    window.location.href = isLoggedIn ? "dashboard.html" : "login.php?msg=unauthorized";
     return;
   }
 
@@ -44,14 +73,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isLoggedIn) {
       var displayName = (currentUser && currentUser.name) ? currentUser.name : "Aryan";
       var displayId = (currentUser && currentUser.id) ? currentUser.id : "D26DCE156";
-      notice.innerHTML = "<span>Welcome back, " + displayName + " (" + displayId + ")! Student Portal is active.</span><button type='button'>&times;</button>";
+      var roleBadge = isAdmin ? " [Administrator]" : "";
+      notice.innerHTML = "<span>Welcome back, " + displayName + " (" + displayId + ")" + roleBadge + "! Student Portal is active.</span><button type='button'>&times;</button>";
     } else {
-      notice.innerHTML = "<span>Welcome to StudentHub! Please <a href='login.html' style='color:#ffffff; text-decoration:underline; font-weight:bold;'>Login</a> to access Student Portal & Dashboard.</span><button type='button'>&times;</button>";
+      notice.innerHTML = "<span>Welcome to StudentHub! Please <a href='login.php' style='color:#ffffff; text-decoration:underline; font-weight:bold;'>Login</a> to access Student Portal & Dashboard.</span><button type='button'>&times;</button>";
     }
     body.insertBefore(notice, header);
     notice.querySelector("button").onclick = function () { notice.classList.add("hidden"); };
 
-    // Setup Navigation Links based on login state
+    // Setup Navigation Links based on login state and role
     if (nav) {
       var menuBtn = document.createElement("button");
       menuBtn.className = "menu-button";
@@ -64,8 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       var navUl = nav.querySelector("ul");
       if (navUl) {
-        var allProtectedLinks = ["dashboard.html", "profile.html", "events.html", "feedback.html", "admin.html"];
-        var allGuestLinks = ["register.html", "login.html"];
+        var studentProtectedLinks = ["dashboard.html", "profile.html", "events.html", "feedback.html"];
+        var adminOnlyLinks = ["admin.html", "admin_dashboard.php", "manage_students.php", "manage_events.php"];
+        var guestLinks = ["register.html", "register.php", "login.html", "login.php"];
 
         var navItems = navUl.querySelectorAll("li");
         navItems.forEach(function (li) {
@@ -73,11 +104,14 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!a) return;
           var href = (a.getAttribute("href") || "").split("?")[0].split("#")[0].split("/").pop().toLowerCase();
 
-          if (allProtectedLinks.indexOf(href) !== -1) {
-            li.classList.add("nav-auth-required");
+          if (adminOnlyLinks.indexOf(href) !== -1) {
+            // ONLY visible to Admin users
+            li.style.display = isAdmin ? "" : "none";
+          } else if (studentProtectedLinks.indexOf(href) !== -1) {
+            // Protected student pages
             li.style.display = isLoggedIn ? "" : "none";
-          } else if (allGuestLinks.indexOf(href) !== -1) {
-            li.classList.add("nav-guest-only");
+          } else if (guestLinks.indexOf(href) !== -1) {
+            // Guest only (Register / Login)
             li.style.display = isLoggedIn ? "none" : "";
           }
         });
@@ -102,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var logoutLi = document.createElement("li");
             logoutLi.className = "nav-logout-item";
             var logoutA = document.createElement("a");
-            logoutA.href = "#";
+            logoutA.href = "logout.php";
             logoutA.className = "logout-btn";
             logoutA.innerHTML = "&#128682; Logout";
             logoutA.title = "Log out of StudentHub";
@@ -111,8 +145,12 @@ document.addEventListener("DOMContentLoaded", function () {
               if (confirm("Are you sure you want to log out of StudentHub?")) {
                 localStorage.removeItem("studentHubLoggedIn");
                 localStorage.removeItem("studentHubUser");
-                alert("You have been logged out successfully.");
-                window.location.href = "index.html";
+                sessionStorage.clear();
+                document.cookie = "studentHubLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "studentHubRole=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "studentHubUserName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "studentHubUserId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.location.href = "logout.php";
               }
             };
             logoutLi.appendChild(logoutA);
@@ -138,45 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  // Handle Login Form on login.html
-  var loginForm = document.getElementById("loginForm") || document.querySelector("form[action='dashboard.html']") || (document.querySelector(".form-container") && document.querySelector(".form-container form"));
-  if (loginForm && (currentPage === "login.html" || document.title.indexOf("Login") !== -1)) {
-    var noticeMsg = sessionStorage.getItem("loginNotice");
-    if (noticeMsg) {
-      sessionStorage.removeItem("loginNotice");
-      var alertBox = document.getElementById("loginAlert");
-      if (!alertBox) {
-        alertBox = document.createElement("div");
-        alertBox.id = "loginAlert";
-        alertBox.className = "login-alert-box";
-        loginForm.parentNode.insertBefore(alertBox, loginForm);
-      }
-      alertBox.style.display = "flex";
-      alertBox.innerHTML = "&#128274; " + noticeMsg;
-    }
-
-    loginForm.onsubmit = function (e) {
-      e.preventDefault();
-      var emailInput = document.getElementById("loginEmail");
-      var val = (emailInput ? emailInput.value : "").trim();
-      var studentId = "D26DCE156";
-      var studentName = "Aryan Joshi";
-      if (val && val.toUpperCase().indexOf("D26") !== -1) {
-        studentId = val.toUpperCase();
-      }
-
-      localStorage.setItem("studentHubLoggedIn", "true");
-      localStorage.setItem("studentHubUser", JSON.stringify({
-        id: studentId,
-        name: studentName,
-        email: val.indexOf("@") !== -1 ? val : (studentId.toLowerCase() + "@charusat.edu.in"),
-        role: "Student"
-      }));
-
-      // Redirect to dashboard
-      window.location.href = "dashboard.html";
-    };
-  }
+  // Login authentication is handled by server-side login.php with BCrypt and MySQL database
 
   // Personalize Dashboard greeting if logged in
   if (currentPage === "dashboard.html") {

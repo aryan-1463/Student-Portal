@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 
 // AJAX endpoint to refresh CAPTCHA in session
@@ -54,7 +54,7 @@ function old($field, $default = '') {
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="register.php" aria-current="page">Register</a></li>
-        <li><a href="login.html">Login</a></li>
+        <li><a href="login.php">Login</a></li>
         <li><a href="dashboard.html">Dashboard</a></li>
         <li><a href="profile.html">Profile</a></li>
         <li><a href="events.html">Events</a></li>
@@ -73,7 +73,7 @@ function old($field, $default = '') {
       <?php if (!empty($successMessage)): ?>
         <div class="alert alert-success" role="status" aria-live="polite" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; padding: 0.85rem 1.2rem; border-radius: 8px; margin-bottom: 1.25rem; background: rgba(22, 163, 74, 0.18); border: 1px solid #22c55e; border-left: 5px solid #22c55e; color: #86efac; font-size: 0.95rem;">
           <div><strong>&#10003;</strong> Registration completed successfully! You can now log in.</div>
-          <a href="login.html" style="display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.4rem 0.95rem; border-radius: 6px; background: #22c55e; color: #0f172a; font-weight: 700; font-size: 0.85rem; text-decoration: none;">Login Now &rarr;</a>
+          <a href="login.php" style="display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.45rem 1.1rem; border-radius: 6px; background: #22c55e; color: #0f172a; font-weight: 700; font-size: 0.85rem; text-decoration: none;">Login Now &rarr;</a>
         </div>
       <?php endif; ?>
 
@@ -179,7 +179,7 @@ function old($field, $default = '') {
         <p id="formResult" class="form-result" role="status" aria-live="polite"></p>
       </form>
 
-      <p style="margin-top: 1rem;">Already have an account? <a href="login.html">Login here</a>.</p>
+      <p style="margin-top: 1rem;">Already have an account? <a href="login.php">Login here</a>.</p>
       
     </section>
   </main>
@@ -188,7 +188,7 @@ function old($field, $default = '') {
     <p>&copy; 2026 StudentHub Academic Portal | College Project</p>
   </footer>
 
-  <script src="js/script.js?v=20261007_1791349032"></script>
+  <script src="js/script.js?v=20261019_live"></script>
 
 </body>
 </html>
